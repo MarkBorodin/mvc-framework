@@ -1,0 +1,19 @@
+{
+    "name": "markborodin/mvc-framework",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "mark",
+            "email": "rens2588@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "framework\\": "framework",
+            "app\\": "app"
+        }
+    }
+}
