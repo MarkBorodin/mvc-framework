@@ -4,7 +4,7 @@
 namespace framework\Components\Router;
 
 
-include '../vendor/autoload.php';
+include __DIR__ . '/../../../vendor/autoload.php';
 
 
 use app\Controllers\HomeController;
@@ -18,15 +18,22 @@ class Router implements RouteInterface
     {
         $url = $_SERVER['REQUEST_URI'];
         $parsed_data = $this->parse_url($url);
+
+        // не работает автолоадер, не пойму почему
         $controller = ucfirst($parsed_data[0]).'Controller';
-        $action = $parsed_data[1];
-        $args = $parsed_data[2];
         $controllerName = "app\Controllers\\" . $controller;
         $controller = new $controllerName();
-        return [$controller, $action];
+
+        $action = $parsed_data[1];
+        $args = $parsed_data[2];
+
+        return function () use ($controller, $action, $args)
+        {
+            return call_user_func([$controller, $action], $args ?? []);
+        };
     }
 
-    public function parse_url($url)
+    public function parse_url($url): array
     {
         $data = explode('/', parse_url($url)['path']);
         $controller = $data[1];

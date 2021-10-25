@@ -4,16 +4,11 @@ namespace app\Controllers;
 
 class ParamsController
 {
-
-//    private $params;
-//
-//    public function __construct($params)
-//    {
-//        $this->params = $params;
-//    }
-
-    public function index()
+    public function index($args)
     {
-        echo 'i am ParamsController';
+        echo 'i am ParamsController<br>';
+        foreach ($args as $key => $value){
+            echo $key . " : " . $value . "<br>";
+        }
     }
 }
