@@ -9,7 +9,10 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
+    "require": {
+        "aigletter/interfaces": "dev-master",
+        "ext-pdo": "*"
+    },
     "autoload": {
         "psr-4": {
             "framework\\": "framework",

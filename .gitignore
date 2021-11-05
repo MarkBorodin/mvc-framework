@@ -1,6 +1,5 @@
 vendor
 composer.lock
 .idea
-test.php
 composer.phar
 composer-setup.php
