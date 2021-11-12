@@ -10,8 +10,8 @@ include __DIR__ . '/../../vendor/autoload.php';
 $file = new FileStore('data.txt');
 
 
-foreach ($file as $line)
+foreach ($file->generator() as $line)
 {
-    echo $line . PHP_EOL;
+    echo $line;
 }
 

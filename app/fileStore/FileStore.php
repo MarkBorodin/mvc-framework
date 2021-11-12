@@ -5,6 +5,7 @@ namespace app\fileStore;
 
 
 use Iterator;
+use SplFileObject;
 
 
 class FileStore implements Iterator
@@ -16,13 +17,10 @@ class FileStore implements Iterator
 
     private $file;
 
-    private $lines;
-
     public function __construct(string $filename)
     {
         $this->filename = $filename;
-        $this->file = fopen($filename, 'r');
-        $this->lines = explode("\n", fread($this->file, filesize($filename)));
+        $this->file = new SplFileObject("data.txt");
     }
 
     /**
@@ -32,7 +30,14 @@ class FileStore implements Iterator
      */
     public function current()
     {
-        return $this->lines[$this->index];
+        $this->generator();
+        return null;
+    }
+
+    function generator(){
+        while (!$this->file->eof()) {
+            yield $this->file->fgets();
+        }
     }
 
     /**
